@@ -14,3 +14,7 @@ end
 get '/contacts' do
 	erb :contacts
 end
+
+get '/visit' do
+	erb :visit
+end
