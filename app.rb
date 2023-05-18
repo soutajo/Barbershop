@@ -27,5 +27,21 @@ post '/visit' do
 	@barber = params[:barber]
 	@color = params[:color]	
 
+	if @username == ''
+		@error = 'Enter your name'
+	end
+
+	hh = { :username => 'Enter your name',
+		     :phone => 'Enter your phone', 
+				 :date_time => 'Enter date and time',
+				 :username => 'Enter your name'	}
+
+	hh.each do |key, value|
+		if params[key] == ''
+			@error = hh[key]
+			return erb :visit
+		end
+	end
+
 	erb "OK, you choose: #{@username}, #{@phone}, #{@date_time}, #{@barber}, #{@color}"
 end
