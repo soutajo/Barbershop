@@ -36,11 +36,10 @@ post '/visit' do
 				 :date_time => 'Enter date and time',
 				 :username => 'Enter your name'	}
 
-	hh.each do |key, value|
-		if params[key] == ''
-			@error = hh[key]
-			return erb :visit
-		end
+	@error = hh.select {|key,_| params[key] == ""}.values.join(', ')
+
+	if @error != ''
+		return erb :visit
 	end
 
 	erb "OK, you choose: #{@username}, #{@phone}, #{@date_time}, #{@barber}, #{@color}"
