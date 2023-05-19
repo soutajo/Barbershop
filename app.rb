@@ -2,6 +2,25 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'sqlite3'
+
+def get_db
+	return SQLite3::Database.new 'barbershop.db'
+end
+
+configure do
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS 
+	  "Users" 
+	  (
+		  "id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+		  "username" TEXT, 
+		  "phone" TEXT, 
+		  "datestamp" TEXT, 
+			"barber" TEXT, 
+		  "color" TEXT
+	  );'
+end
 
 get '/' do
 	erb "Welome to our Barber Shop!"			
@@ -41,6 +60,8 @@ post '/visit' do
 	if @error != ''
 		return erb :visit
 	end
+  db = get_db
+	db.execute 'INSERT INTO users (username, phone, datestamp, barber, color) VALUES (?, ?, ?, ?, ?)', [@username, @phone, @date_time, @barber, @color]
 
 	erb "OK, you choose: #{@username}, #{@phone}, #{@date_time}, #{@barber}, #{@color}"
 end
