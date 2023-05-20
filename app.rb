@@ -91,7 +91,7 @@ post '/visit' do
   db = get_db
 	db.execute 'INSERT INTO users (username, phone, datestamp, barber, color) VALUES (?, ?, ?, ?, ?)', [@username, @phone, @date_time, @barber, @color]
 
-	erb "OK, you choose: #{@username}, #{@phone}, #{@date_time}, #{@barber}, #{@color}"
+	erb "<h2>Thank you, you are successfully booked an appointment!</h2>"
 end
 
 get '/showusers' do
