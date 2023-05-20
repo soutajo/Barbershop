@@ -69,5 +69,9 @@ post '/visit' do
 end
 
 get '/showusers' do
-	erb 'Hello'
+	db = get_db
+
+	@results = db.execute 'SELECT * FROM Users ORDER BY id DESC'
+
+	erb :showusers
 end
