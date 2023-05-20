@@ -1,6 +1,17 @@
 <h2>Make an appointment</h2>
 <p>Here you can book an appointment to a barber</p>
 
+<script type="text/javascript">
+
+$(function(){
+
+  $('#color').simplecolorpicker();
+  $('#datetimepicker').datetimepicker();
+
+});
+
+</script>
+
 <form action="/visit" method="POST">
 
   <div class="form-group">
@@ -15,7 +26,7 @@
 
   <div class="form-group">
     <label>Appointment date and time</label>
-    <input name="date_time" type="text" class="form-control" placeholder="Enter date and time" value="<%= @date_time %>">
+    <input id="datetimepicker" name="date_time" type="text" class="form-control" placeholder="Enter date and time" value="<%= @date_time %>">
   </div>
 
    <div class="form-group">
@@ -48,13 +59,3 @@
   <button type="submit" class="btn btn-primary">Book an appointment</button>
 
 </form>
-
-<script type="text/javascript">
-
-$(function(){
-
-  $('#color').simplecolorpicker();
-
-});
-
-</script>
